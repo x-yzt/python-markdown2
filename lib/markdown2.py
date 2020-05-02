@@ -1609,6 +1609,7 @@ class Markdown(object):
     def _list_sub(self, match):
         lst = match.group(1)
         lst_type = match.group(3) in self._marker_ul_chars and "ul" or "ol"
+        lst_type = lst_type + self._html_class_str_from_tag(lst_type)
         result = self._process_list_items(lst)
         if self.list_level:
             return "<%s>\n%s</%s>\n" % (lst_type, result, lst_type)
